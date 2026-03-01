@@ -2,13 +2,62 @@
 
 A better Control UI for [OpenClaw](https://github.com/openclaw/openclaw) — an open-source, community-driven improvement to the official web dashboard.
 
-## What is this?
+clawui is a static web app that connects to your OpenClaw gateway over WebSocket. It can run locally alongside your gateway, or be hosted remotely.
 
-[OpenClaw](https://github.com/openclaw/openclaw) is a self-hosted gateway that connects chat apps (WhatsApp, Telegram, Discord, iMessage, and more) to AI coding agents. It ships with a browser-based Control UI for chat, configuration, sessions, and node management.
+---
 
-**clawui** forks that UI with a focus on user experience: cleaner interactions, better layout, and quality-of-life improvements for day-to-day use.
+## Option A — Install Locally
 
-## Getting started
+**1. Install**
+
+```bash
+npm install -g clawui
+```
+
+**2. Configure OpenClaw**
+
+```bash
+openclaw config set gateway.controlUi.root ~/.clawui/dist
+```
+
+Or edit `~/.openclaw/config.yaml` directly:
+
+```yaml
+gateway:
+  controlUi:
+    root: ~/.clawui/dist
+```
+
+**3. Restart your gateway** — open `http://localhost:18789` and you'll see clawui.
+
+Your data stays on your machine. clawui is just the frontend skin.
+
+---
+
+## Option B — Try Online
+
+Visit **[try.clawui.app](https://try.clawui.app)** — no installation needed.
+
+To connect your own gateway to the hosted UI, add the origin to your OpenClaw config:
+
+```yaml
+gateway:
+  controlUi:
+    allowedOrigins:
+      - https://try.clawui.app
+```
+
+---
+
+## What is OpenClaw?
+
+[OpenClaw](https://github.com/openclaw/openclaw) is a self-hosted gateway that connects chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents. It ships with a browser-based Control UI for chat, configuration, sessions, and node management.
+
+**clawui** improves on that UI with a focus on user experience: cleaner interactions, better layout, and quality-of-life improvements for day-to-day use.
+
+---
+
+## Developing
 
 **Prerequisites:** Node 22+
 
@@ -26,11 +75,7 @@ npm run build
 npm test
 ```
 
-The dev server proxies to your local OpenClaw Gateway. Make sure the Gateway is running before opening the UI.
-
 ### Custom base path
-
-If you serve the built assets under a subpath, set the base path at build time:
 
 ```bash
 OPENCLAW_CONTROL_UI_BASE_PATH=/clawui/ npm run build
@@ -42,11 +87,7 @@ OPENCLAW_CONTROL_UI_BASE_PATH=/clawui/ npm run build
 - [Vite](https://vite.dev) — build tooling
 - [Vitest](https://vitest.dev) — unit and browser tests
 
-## Relationship to OpenClaw
-
-This project tracks the upstream `ui/` directory from [openclaw/openclaw](https://github.com/openclaw/openclaw). The `.external/` directory (git-ignored) holds a sparse checkout of the upstream repo for reference.
-
-Changes here are intentionally scoped to the UI layer and do not modify the OpenClaw Gateway or agent runtime.
+---
 
 ## Contributing
 
