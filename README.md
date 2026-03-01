@@ -42,11 +42,16 @@ Connecting try.clawui.app to your own gateway requires a few extra steps because
 
 ### Step 1 — Allow external connections
 
-By default, OpenClaw binds only to loopback. Set `bind` to `"lan"` in `~/.openclaw/openclaw.json`:
+By default, OpenClaw binds only to loopback. Set `bind` to `"lan"` and add `try.clawui.app` to `allowedOrigins` in `~/.openclaw/openclaw.json`:
 
 ```json
 "gateway": {
-  "bind": "lan"
+  "bind": "lan",
+  "controlUi": {
+    "allowedOrigins": [
+      "https://try.clawui.app"
+    ]
+  }
 }
 ```
 
@@ -56,14 +61,9 @@ The hosted UI is served over HTTPS, so the browser only allows **WSS** connectio
 
 **Option A — Let OpenClaw generate a self-signed certificate** (quickest):
 
-```json
-"gateway": {
-  "bind": "lan",
-  "tls": {
-    "enabled": true,
-    "autoGenerate": true
-  }
-}
+```bash
+openclaw config set gateway.tls.enabled true
+openclaw config set gateway.tls.autoGenerate true
 ```
 
 After restarting, open `https://your-host:18789` directly in the browser and accept the certificate warning once.
@@ -79,23 +79,6 @@ your-domain.example.com {
 ```
 
 Caddy automatically provisions a Let's Encrypt certificate.
-
-### Step 3 — Allow the try.clawui.app origin
-
-```json
-"gateway": {
-  "bind": "lan",
-  "tls": {
-    "enabled": true,
-    "autoGenerate": true
-  },
-  "controlUi": {
-    "allowedOrigins": [
-      "https://try.clawui.app"
-    ]
-  }
-}
-```
 
 ### Step 4 — Restart and pair
 
