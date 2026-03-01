@@ -38,14 +38,61 @@ Your data stays on your machine. clawui is just the frontend skin.
 
 Visit **[try.clawui.app](https://try.clawui.app)** — no installation needed.
 
-To connect your own gateway to the hosted UI, add the origin to your OpenClaw config:
+Connecting try.clawui.app to your own gateway requires a few extra steps because the hosted UI is served over HTTPS, so the browser will only allow **WSS (WebSocket Secure)** connections. A plain `ws://` gateway will be blocked.
+
+### Step 1 — Allow external connections
+
+By default, OpenClaw binds only to loopback (`127.0.0.1`). Change it to listen on all interfaces:
+
+```bash
+openclaw config set gateway.bind 0.0.0.0
+```
+
+### Step 2 — Enable TLS on the gateway
+
+**Option 2a — Let OpenClaw handle TLS** (simplest):
+
+```bash
+openclaw config set gateway.tls.enabled true
+openclaw config set gateway.tls.autoGenerate true
+```
+
+This generates a self-signed certificate. Your browser will show a certificate warning the first time — open the gateway URL directly (e.g. `https://your-host:18789`) and accept the exception, then return to try.clawui.app.
+
+**Option 2b — Reverse proxy with a trusted certificate** (recommended for persistent setups):
+
+Point nginx or Caddy in front of the gateway and terminate TLS there. Example Caddy config:
+
+```
+your-domain.example.com {
+    reverse_proxy localhost:18789
+}
+```
+
+Caddy automatically provisions a Let's Encrypt certificate. No browser warning.
+
+### Step 3 — Allow the clawui.app origin
+
+```bash
+openclaw config set gateway.controlUi.allowedOrigins[0] https://try.clawui.app
+```
+
+Or in `~/.openclaw/config.yaml`:
 
 ```yaml
 gateway:
+  bind: 0.0.0.0
+  tls:
+    enabled: true
+    autoGenerate: true
   controlUi:
     allowedOrigins:
       - https://try.clawui.app
 ```
+
+### Step 4 — Restart and connect
+
+Restart your gateway, then enter your gateway URL in try.clawui.app (e.g. `wss://your-host:18789`).
 
 ---
 
