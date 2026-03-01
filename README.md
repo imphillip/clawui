@@ -40,13 +40,50 @@ Visit **[try.clawui.app](https://try.clawui.app)** — no installation needed.
 
 Connecting try.clawui.app to your own gateway requires a few extra steps because the hosted UI is served over HTTPS, so the browser will only allow **WSS (WebSocket Secure)** connections. A plain `ws://` gateway will be blocked.
 
-### Step 1 — Edit your OpenClaw config
+### Step 1 — Allow external connections
 
-Open `~/.openclaw/openclaw.json` and update the `gateway` section:
+By default, OpenClaw binds only to loopback. Set `bind` to `"lan"` in `~/.openclaw/openclaw.json`:
 
 ```json
 "gateway": {
-  "port": 18789,
+  "bind": "lan"
+}
+```
+
+### Step 2 — Enable TLS
+
+The hosted UI is served over HTTPS, so the browser only allows **WSS** connections. A plain `ws://` gateway will be blocked.
+
+**Option A — Let OpenClaw generate a self-signed certificate** (quickest):
+
+```json
+"gateway": {
+  "bind": "lan",
+  "tls": {
+    "enabled": true,
+    "autoGenerate": true
+  }
+}
+```
+
+After restarting, open `https://your-host:18789` directly in the browser and accept the certificate warning once.
+
+**Option B — Reverse proxy with a trusted certificate** (no browser warning):
+
+Put Caddy or nginx in front of the gateway and terminate TLS there. Example Caddyfile:
+
+```
+your-domain.example.com {
+    reverse_proxy localhost:18789
+}
+```
+
+Caddy automatically provisions a Let's Encrypt certificate.
+
+### Step 3 — Allow the try.clawui.app origin
+
+```json
+"gateway": {
   "bind": "lan",
   "tls": {
     "enabled": true,
@@ -60,27 +97,9 @@ Open `~/.openclaw/openclaw.json` and update the `gateway` section:
 }
 ```
 
-- **`bind: "lan"`** — accepts connections from outside localhost (default is loopback-only)
-- **`tls.autoGenerate: true`** — generates a self-signed certificate so the gateway speaks WSS
+### Step 4 — Restart and pair
 
-### Step 2 — Trust the self-signed certificate
-
-Open your gateway URL directly in the browser (e.g. `https://your-host:18789`) and accept the certificate warning. You only need to do this once per browser.
-
-If you prefer a trusted certificate with no warnings, put nginx or Caddy in front of the gateway instead:
-
-```
-# Caddyfile
-your-domain.example.com {
-    reverse_proxy localhost:18789
-}
-```
-
-Caddy automatically provisions a Let's Encrypt certificate.
-
-### Step 3 — Restart and connect
-
-Restart your gateway, then enter your gateway URL in try.clawui.app (e.g. `wss://your-host:18789`).
+Restart your gateway, then open try.clawui.app and enter your gateway URL (e.g. `wss://your-host:18789`). Because this is an external client, you will be prompted to complete a **device pairing** flow — follow the prompts in the UI to authorize the connection.
 
 ---
 
