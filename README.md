@@ -73,11 +73,7 @@ Caddy automatically provisions a Let's Encrypt certificate. No browser warning.
 
 ### Step 3 — Allow the clawui.app origin
 
-```bash
-openclaw config set gateway.controlUi.allowedOrigins[0] https://try.clawui.app
-```
-
-Or in `~/.openclaw/config.yaml`:
+Edit `~/.openclaw/config.yaml`:
 
 ```yaml
 gateway:
