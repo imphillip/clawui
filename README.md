@@ -40,53 +40,45 @@ Visit **[try.clawui.app](https://try.clawui.app)** — no installation needed.
 
 Connecting try.clawui.app to your own gateway requires a few extra steps because the hosted UI is served over HTTPS, so the browser will only allow **WSS (WebSocket Secure)** connections. A plain `ws://` gateway will be blocked.
 
-### Step 1 — Allow external connections
+### Step 1 — Edit your OpenClaw config
 
-By default, OpenClaw binds only to loopback (`127.0.0.1`). Change it to listen on all interfaces:
+Open `~/.openclaw/openclaw.json` and update the `gateway` section:
 
-```bash
-openclaw config set gateway.bind 0.0.0.0
+```json
+"gateway": {
+  "port": 18789,
+  "bind": "lan",
+  "tls": {
+    "enabled": true,
+    "autoGenerate": true
+  },
+  "controlUi": {
+    "allowedOrigins": [
+      "https://try.clawui.app"
+    ]
+  }
+}
 ```
 
-### Step 2 — Enable TLS on the gateway
+- **`bind: "lan"`** — accepts connections from outside localhost (default is loopback-only)
+- **`tls.autoGenerate: true`** — generates a self-signed certificate so the gateway speaks WSS
 
-**Option 2a — Let OpenClaw handle TLS** (simplest):
+### Step 2 — Trust the self-signed certificate
 
-```bash
-openclaw config set gateway.tls.enabled true
-openclaw config set gateway.tls.autoGenerate true
-```
+Open your gateway URL directly in the browser (e.g. `https://your-host:18789`) and accept the certificate warning. You only need to do this once per browser.
 
-This generates a self-signed certificate. Your browser will show a certificate warning the first time — open the gateway URL directly (e.g. `https://your-host:18789`) and accept the exception, then return to try.clawui.app.
-
-**Option 2b — Reverse proxy with a trusted certificate** (recommended for persistent setups):
-
-Point nginx or Caddy in front of the gateway and terminate TLS there. Example Caddy config:
+If you prefer a trusted certificate with no warnings, put nginx or Caddy in front of the gateway instead:
 
 ```
+# Caddyfile
 your-domain.example.com {
     reverse_proxy localhost:18789
 }
 ```
 
-Caddy automatically provisions a Let's Encrypt certificate. No browser warning.
+Caddy automatically provisions a Let's Encrypt certificate.
 
-### Step 3 — Allow the clawui.app origin
-
-Edit `~/.openclaw/config.yaml`:
-
-```yaml
-gateway:
-  bind: 0.0.0.0
-  tls:
-    enabled: true
-    autoGenerate: true
-  controlUi:
-    allowedOrigins:
-      - https://try.clawui.app
-```
-
-### Step 4 — Restart and connect
+### Step 3 — Restart and connect
 
 Restart your gateway, then enter your gateway URL in try.clawui.app (e.g. `wss://your-host:18789`).
 
