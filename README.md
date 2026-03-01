@@ -80,7 +80,7 @@ your-domain.example.com {
 
 Caddy automatically provisions a Let's Encrypt certificate.
 
-### Step 4 — Restart and pair
+### Step 3 — Restart and pair
 
 Restart your gateway, then open try.clawui.app and enter your gateway URL (e.g. `wss://your-host:18789`). Because this is an external client, you will be prompted to complete a **device pairing** flow — follow the prompts in the UI to authorize the connection.
 
