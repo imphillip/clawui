@@ -1,11 +1,5 @@
 export type UpdateAvailable = import("../../../src/infra/update-startup.js").UpdateAvailable;
-import type { CronJobBase } from "../../../src/cron/types-shared.js";
 import type { ConfigUiHints } from "../../../src/shared/config-ui-hints-types.js";
-import type {
-  GatewayAgentRow as SharedGatewayAgentRow,
-  SessionsListResultBase,
-  SessionsPatchResultBase,
-} from "../../../src/shared/session-types.js";
 export type { ConfigUiHints } from "../../../src/shared/config-ui-hints-types.js";
 
 export type ChannelsStatusSnapshot = {
@@ -320,7 +314,17 @@ export type GatewaySessionsDefaults = {
   contextTokens: number | null;
 };
 
-export type GatewayAgentRow = SharedGatewayAgentRow;
+export type GatewayAgentRow = {
+  id: string;
+  name?: string;
+  identity?: {
+    name?: string;
+    theme?: string;
+    emoji?: string;
+    avatar?: string;
+    avatarUrl?: string;
+  };
+};
 
 export type AgentsListResult = {
   defaultId: string;
@@ -418,16 +422,27 @@ export type GatewaySessionRow = {
   contextTokens?: number;
 };
 
-export type SessionsListResult = SessionsListResultBase<GatewaySessionsDefaults, GatewaySessionRow>;
+export type SessionsListResult = {
+  ts: number;
+  path: string;
+  count: number;
+  defaults: GatewaySessionsDefaults;
+  sessions: GatewaySessionRow[];
+};
 
-export type SessionsPatchResult = SessionsPatchResultBase<{
-  sessionId: string;
-  updatedAt?: number;
-  thinkingLevel?: string;
-  verboseLevel?: string;
-  reasoningLevel?: string;
-  elevatedLevel?: string;
-}>;
+export type SessionsPatchResult = {
+  ok: true;
+  path: string;
+  key: string;
+  entry: {
+    sessionId: string;
+    updatedAt?: number;
+    thinkingLevel?: string;
+    verboseLevel?: string;
+    reasoningLevel?: string;
+    elevatedLevel?: string;
+  };
+};
 
 export type {
   CostUsageDailyEntry,
@@ -493,14 +508,22 @@ export type CronJobState = {
   lastFailureAlertAtMs?: number;
 };
 
-export type CronJob = CronJobBase<
-  CronSchedule,
-  CronSessionTarget,
-  CronWakeMode,
-  CronPayload,
-  CronDelivery,
-  CronFailureAlert | false
-> & {
+export type CronJob = {
+  id: string;
+  agentId?: string;
+  sessionKey?: string;
+  name: string;
+  description?: string;
+  enabled: boolean;
+  deleteAfterRun?: boolean;
+  createdAtMs: number;
+  updatedAtMs: number;
+  schedule: CronSchedule;
+  sessionTarget: CronSessionTarget;
+  wakeMode: CronWakeMode;
+  payload: CronPayload;
+  delivery?: CronDelivery;
+  failureAlert?: CronFailureAlert | false;
   state?: CronJobState;
 };
 
