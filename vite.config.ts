@@ -24,11 +24,14 @@ function normalizeBase(input: string): string {
  * in the UI source therefore escape the project root (e.g. "../../../src/…").
  *
  * This plugin intercepts those out-of-root imports and redirects them to the
- * local src/ copy that lives inside this repository.
+ * local src/ or apps/ copy that lives inside this repository.
  */
 function resolveUpstreamSrc(): Plugin {
   const localSrc = path.resolve(here, "src");
   const parentSrc = path.resolve(here, "../src");
+
+  const localApps = path.resolve(here, "apps");
+  const parentApps = path.resolve(here, "../apps");
 
   return {
     name: "resolve-upstream-src",
@@ -36,11 +39,18 @@ function resolveUpstreamSrc(): Plugin {
       if (!importer || !source.startsWith("../")) return null;
 
       const resolved = path.resolve(path.dirname(importer), source);
-      if (!resolved.startsWith(parentSrc)) return null;
 
-      const rel = path.relative(parentSrc, resolved);
-      const local = path.join(localSrc, rel).replace(/\.js$/, ".ts");
-      return local;
+      if (resolved.startsWith(parentSrc)) {
+        const rel = path.relative(parentSrc, resolved);
+        return path.join(localSrc, rel).replace(/\.js$/, ".ts");
+      }
+
+      if (resolved.startsWith(parentApps)) {
+        const rel = path.relative(parentApps, resolved);
+        return path.join(localApps, rel);
+      }
+
+      return null;
     },
   };
 }
