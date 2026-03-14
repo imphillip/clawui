@@ -251,18 +251,16 @@ export function renderUsage(props: UsageProps) {
 
   // Compute totals from sessions
   const computeSessionTotals = (sessions: UsageSessionEntry[]): UsageTotals => {
-    return sessions.reduce((acc, s) => {
-      if (s.usage) {
-        addUsageTotals(acc, s.usage);
-      }
-      return acc;
-    }, createEmptyUsageTotals());
+    return sessions.reduce(
+      (acc, s) => (s.usage ? addUsageTotals(acc, s.usage) : acc),
+      createEmptyUsageTotals(),
+    );
   };
 
   // Compute totals from daily data for selected days (more accurate than session totals)
   const computeDailyTotals = (days: string[]): UsageTotals => {
     const matchingDays = props.costDaily.filter((d) => days.includes(d.date));
-    return matchingDays.reduce((acc, d) => addUsageTotals(acc, d), createEmptyUsageTotals());
+    return matchingDays.reduce((acc, day) => addUsageTotals(acc, day), createEmptyUsageTotals());
   };
 
   // Compute display totals and count based on filters

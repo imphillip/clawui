@@ -35,6 +35,7 @@ function resolveUpstreamSrc(): Plugin {
 
   return {
     name: "resolve-upstream-src",
+    enforce: "pre",
     resolveId(source, importer) {
       if (!importer || !source.startsWith("../")) return null;
 
@@ -60,7 +61,25 @@ export default defineConfig(() => {
   const base = envBase ? normalizeBase(envBase) : "./";
   return {
     base,
-    plugins: [resolveUpstreamSrc()],
+    plugins: [
+      resolveUpstreamSrc(),
+      {
+        name: "control-ui-dev-stubs",
+        configureServer(server) {
+          server.middlewares.use("/__openclaw/control-ui-config.json", (_req, res) => {
+            res.setHeader("Content-Type", "application/json");
+            res.end(
+              JSON.stringify({
+                basePath: "/",
+                assistantName: "",
+                assistantAvatar: "",
+                assistantAgentId: "",
+              }),
+            );
+          });
+        },
+      },
+    ],
     publicDir: path.resolve(here, "public"),
     optimizeDeps: {
       include: ["lit/directives/repeat.js"],
