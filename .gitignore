@@ -2,5 +2,7 @@
 node_modules/
 dist/
 .claude/
+.DS_Store
 docs/.vitepress/dist
+docs/.vitepress/cache
 docs/node_modules
