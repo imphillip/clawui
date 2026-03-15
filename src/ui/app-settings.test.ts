@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   applyResolvedTheme,
   applySettings,
+  applySettingsFromUrl,
   attachThemeListener,
   setTabFromRoute,
   syncThemeWithSettings,
@@ -60,6 +61,8 @@ type SettingsHost = {
   themeMediaHandler: ((event: MediaQueryListEvent) => void) | null;
   logsPollInterval: number | null;
   debugPollInterval: number | null;
+  pendingGatewayUrl?: string | null;
+  pendingGatewayToken?: string | null;
 };
 
 function createStorageMock(): Storage {

@@ -6,7 +6,7 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 
 ## 2026-03-16
 
-**Upstream synced:** `b49e1386d → 13e256ac9d` (OpenClaw `v2026.3.2`)
+**Upstream synced:** `b49e1386d → 13e256ac9d` (OpenClaw `v2026.3.2+`, unreleased HEAD)
 **clawui commit:** [`c639d28`](https://github.com/imphillip/clawui/commit/c639d28)
 
 ### What changed
@@ -58,4 +58,4 @@ First working standalone build of the OpenClaw Control UI. Establishes the `reso
 
 | clawui | OpenClaw upstream | Sync date |
 |---|---|---|
-| current | `v2026.3.2` (`13e256ac9d`) | 2026-03-16 |
+| current | `v2026.3.2+` unreleased (`13e256ac9d`) | 2026-03-16 |

@@ -72,6 +72,6 @@ clawui follows the [OpenClaw](https://github.com/openclaw/openclaw) upstream UI 
 
 | | |
 |---|---|
-| **Upstream version** | `v2026.3.2` (`13e256ac9d`) |
+| **Upstream version** | `v2026.3.2+` unreleased (`13e256ac9d`) |
 | **Last synced** | 2026-03-16 |
 | **Sync commit** | [`c639d28`](https://github.com/imphillip/clawui/commit/c639d28) |
