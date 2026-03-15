@@ -4,6 +4,19 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 
 ---
 
+## 2026-03-16 (second sync)
+
+**Upstream synced:** `13e256ac9d → 42837a04bf` (OpenClaw `v2026.3.2+`, unreleased HEAD)
+**clawui commit:** [`7ff1d37`](https://github.com/imphillip/clawui/commit/7ff1d37)
+
+### What changed
+
+**Per-gateway session persistence** — The active session is now stored separately for each gateway URL. Switching between gateways restores the last-used session for each one, up to a rolling window of 10 recent gateways.
+
+**URL token session reset** — When a `?token=…` query parameter is present without an explicit `?session=…`, the session resets to `main`. Prevents stale sessions from carrying over when connecting to a new gateway via shared link.
+
+---
+
 ## 2026-03-16
 
 **Upstream synced:** `b49e1386d → 13e256ac9d` (OpenClaw `v2026.3.2+`, unreleased HEAD)
@@ -58,4 +71,4 @@ First working standalone build of the OpenClaw Control UI. Establishes the `reso
 
 | clawui | OpenClaw upstream | Sync date |
 |---|---|---|
-| current | `v2026.3.2+` unreleased (`13e256ac9d`) | 2026-03-16 |
+| current | `v2026.3.2+` unreleased (`42837a04bf`) | 2026-03-16 |
