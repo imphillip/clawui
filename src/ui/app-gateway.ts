@@ -91,6 +91,10 @@ type SessionDefaultsSnapshot = {
   scope?: string;
 };
 
+type GatewayHostWithShutdownMessage = GatewayHost & {
+  pendingShutdownMessage?: string | null;
+};
+
 export function resolveControlUiClientVersion(params: {
   gatewayUrl: string;
   serverVersion: string | null;
@@ -169,10 +173,6 @@ function applySessionDefaults(host: GatewayHost, defaults?: SessionDefaultsSnaps
     applySettings(host as unknown as Parameters<typeof applySettings>[0], nextSettings);
   }
 }
-
-type GatewayHostWithShutdownMessage = GatewayHost & {
-  pendingShutdownMessage?: string | null;
-};
 
 export function connectGateway(host: GatewayHost) {
   const shutdownHost = host as GatewayHostWithShutdownMessage;
