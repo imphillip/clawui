@@ -1,12 +1,23 @@
-/* Override VitePress brand color to match OpenClaw red */
+/* Brand color: OpenClaw red */
 :root {
   --vp-c-brand-1: #e03131;
   --vp-c-brand-2: #c92a2a;
   --vp-c-brand-3: #fa5252;
-  --vp-c-brand-soft: rgba(224, 49, 49, 0.1);
+  --vp-c-brand-soft: rgba(224, 49, 49, 0.14);
+
+  --vp-button-brand-bg: #e03131;
+  --vp-button-brand-hover-bg: #c92a2a;
+  --vp-button-brand-active-bg: #b02525;
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #e03131 0%, #c92a2a 100%);
 }
 
-/* Docs page tweaks */
-.VPDoc .vp-doc h1 {
-  font-size: 2rem;
+/* Hero screenshot styling */
+.VPHero .VPImage {
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 20px 40px -8px rgba(0, 0, 0, 0.10);
 }

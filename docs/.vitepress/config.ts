@@ -7,7 +7,6 @@ export default defineConfig({
   lang: "en-US",
 
   head: [
-    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
     ["meta", { name: "og:type", content: "website" }],
     ["meta", { name: "og:site_name", content: "clawui" }],
     [
@@ -21,7 +20,6 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: "/logo.svg",
     siteTitle: "clawui",
 
     nav: [
