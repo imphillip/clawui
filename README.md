@@ -1,8 +1,15 @@
 # clawui
 
-A better Control UI for [OpenClaw](https://github.com/openclaw/openclaw) — an open-source, community-driven improvement to the official web dashboard.
+A standalone web UI for [OpenClaw](https://github.com/openclaw/openclaw) — deployable independently from the gateway.
 
-clawui is a static web app that connects to your OpenClaw gateway over WebSocket. It can run locally alongside your gateway, or be hosted remotely.
+OpenClaw ships with a Control UI, but it is served directly by the gateway process. This means the UI and the gateway must run on the same machine. **clawui** breaks that assumption: it is a self-contained static web app that connects to any OpenClaw gateway over WebSocket, from anywhere.
+
+This matters in practice:
+
+- Your gateway runs on a server, headless. You access the UI from your laptop or phone.
+- You host a single clawui instance on a CDN and point it at whichever gateway you need.
+- You run multiple gateways (dev, staging, prod) and switch between them from one UI.
+- Your team shares a gateway but each member uses their own UI deployment.
 
 ---
 
@@ -30,7 +37,7 @@ gateway:
 
 **3. Restart your gateway** — open `http://localhost:18789` and you'll see clawui.
 
-Your data stays on your machine. clawui is just the frontend skin.
+Your data stays on your machine. clawui is just the frontend.
 
 ---
 
@@ -90,7 +97,7 @@ Restart your gateway, then open try.clawui.app and enter your gateway URL (e.g. 
 
 [OpenClaw](https://github.com/openclaw/openclaw) is a self-hosted gateway that connects chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents. It ships with a browser-based Control UI for chat, configuration, sessions, and node management.
 
-**clawui** improves on that UI with a focus on user experience: cleaner interactions, better layout, and quality-of-life improvements for day-to-day use.
+clawui is a faithful extraction of that Control UI into a standalone static application. It tracks the upstream UI closely and adds the deployment flexibility that the bundled version cannot provide.
 
 ---
 
@@ -129,6 +136,8 @@ OPENCLAW_CONTROL_UI_BASE_PATH=/clawui/ npm run build
 ## Contributing
 
 PRs and issues are welcome. Please open an issue before starting significant work so we can align on approach.
+
+clawui tracks the upstream OpenClaw UI closely. When contributing, keep in mind that the goal is standalone deployability — not divergence from upstream features or behavior.
 
 ## License
 
