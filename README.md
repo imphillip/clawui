@@ -119,6 +119,22 @@ npm run build
 npm test
 ```
 
+### Keeping UI in sync with upstream
+
+This repo's UI is derived from the upstream OpenClaw UI at `/Users/wangxiaohan/claw/openclaw/ui`.
+
+```bash
+# Compare src/* against upstream (after applying the ignore list)
+npm run check:ui-diff
+
+# Sync src/* from upstream into this repo
+# (local-only files are kept; files listed in scripts/ui-sync-ignore.txt are never overwritten)
+npm run sync:ui
+
+# List files under src/ that do not exist in the upstream tree
+npm run check:ui-extra
+```
+
 ### Custom base path
 
 ```bash
