@@ -6,3 +6,5 @@ dist/
 docs/.vitepress/dist
 docs/.vitepress/cache
 docs/node_modules
+.cursor/
+pnpm-lock.yaml
