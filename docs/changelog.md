@@ -6,7 +6,7 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 
 ## 2026-03-23
 
-**Upstream synced:** `42837a04bf → f404ff32d5` (OpenClaw `v2026.3.2+`, unreleased HEAD)
+**Upstream synced:** `42837a04bf → f404ff32d5` (OpenClaw `v2026.3.23`, unreleased HEAD)
 **clawui commit:** [`86f8270`](https://github.com/imphillip/clawui/commit/86f8270)
 
 ### What changed
