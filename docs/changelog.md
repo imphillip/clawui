@@ -23,8 +23,10 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 **update project configuration and UI synchronization scripts**
 **enhance UI synchronization and improve usage tab functionality**
 **add usage styles to enhance UI consistency**
+
 ---
-## 2026-03-16 (second sync)
+
+## 2026-03-16 (second syn)
 
 **Upstream synced:** `13e256ac9d → 42837a04bf` (OpenClaw `v2026.3.2+`, unreleased HEAD)
 **clawui commit:** [`7ff1d37`](https://github.com/imphillip/clawui/commit/7ff1d37)
