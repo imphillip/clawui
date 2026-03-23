@@ -100,4 +100,4 @@ First working standalone build of the OpenClaw Control UI. Establishes the `reso
 
 | clawui | OpenClaw upstream | Sync date |
 |---|---|---|
-| current | `v2026.3.2+` unreleased (`f404ff32d5`) | 2026-03-23 |
+| current | `v2026.3.23` unreleased (`f404ff32d5`) | 2026-03-23 |
