@@ -6,22 +6,29 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 
 ## 2026-03-23
 
-**Upstream synced:** `42837a04bf → f404ff32d5` (OpenClaw `v2026.3.2+`, unreleased HEAD)
+**Upstream synced:** `42837a04bf → f404ff32d5` (OpenClaw `v2026.3.23`, unreleased HEAD)
 **clawui commit:** [`86f8270`](https://github.com/imphillip/clawui/commit/86f8270)
 
 ### What changed
+
 **localStorage safety** — add getSafeLocalStorage() helper (local-storage.ts), replace all direct localStorage access across UI files
+
 **localStorage scoping** — settings key now scoped by basePath/gateway URL to prevent cross-deployment conflicts (storage.ts)
+
 **chat-model-ref** — new module centralizing provider-qualified model references (provider/model format), fixes model picker sending correct provider prefix
+
 **query token compat** — token now accepted from both ?token= query param and #token= hash param; pending token held until gateway URL change is confirmed
+
 **auto-scroll fix** — reset scroll state on send and detect stream start to force scroll to bottom during assistant response
+
 **Usage tab auto-load** — on navigation
+
 **overview locale** — persist locale dropdown selection across refresh
+
 **i18n** — "onboarding" → "setup" in UI strings
+
 **vendor** — add thinking.shared.ts (slash-command-executor import path changed)
-**change gitignore**
-**update project configuration and UI synchronization scripts**
-**enhance UI synchronization and improve usage tab functionality**
+
 **add usage styles to enhance UI consistency**
 
 ---
@@ -93,4 +100,4 @@ First working standalone build of the OpenClaw Control UI. Establishes the `reso
 
 | clawui | OpenClaw upstream | Sync date |
 |---|---|---|
-| current | `v2026.3.2+` unreleased (`f404ff32d5`) | 2026-03-23 |
+| current | `v2026.3.23` unreleased (`f404ff32d5`) | 2026-03-23 |
