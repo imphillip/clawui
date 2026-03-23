@@ -6,7 +6,11 @@
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
-    "test": "vitest run --config vitest.config.ts"
+    "test": "vitest run --config vitest.config.ts",
+    "check:ui-diff": "scripts/compare-ui.sh",
+    "gen:ui-diff-doc": "bash scripts/generate-ui-diff-summary.sh",
+    "sync:ui": "scripts/sync-ui-from-openclaw.sh",
+    "check:ui-extra": "scripts/check-extra-ui-files.sh"
   },
   "dependencies": {
     "@lit-labs/signals": "^0.2.0",

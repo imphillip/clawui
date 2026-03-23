@@ -15,6 +15,7 @@ src/agents/tool-catalog.ts
 src/agents/tool-display-common.ts
 src/agents/tool-policy-shared.ts
 src/auto-reply/reply/strip-inbound-meta.ts
+src/auto-reply/thinking.shared.ts
 src/auto-reply/thinking.ts
 src/gateway/control-ui-contract.ts
 src/gateway/device-auth.ts
