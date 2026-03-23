@@ -10,18 +10,25 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 **clawui commit:** [`86f8270`](https://github.com/imphillip/clawui/commit/86f8270)
 
 ### What changed
+
 **localStorage safety** — add getSafeLocalStorage() helper (local-storage.ts), replace all direct localStorage access across UI files
+
 **localStorage scoping** — settings key now scoped by basePath/gateway URL to prevent cross-deployment conflicts (storage.ts)
+
 **chat-model-ref** — new module centralizing provider-qualified model references (provider/model format), fixes model picker sending correct provider prefix
+
 **query token compat** — token now accepted from both ?token= query param and #token= hash param; pending token held until gateway URL change is confirmed
+
 **auto-scroll fix** — reset scroll state on send and detect stream start to force scroll to bottom during assistant response
+
 **Usage tab auto-load** — on navigation
+
 **overview locale** — persist locale dropdown selection across refresh
+
 **i18n** — "onboarding" → "setup" in UI strings
+
 **vendor** — add thinking.shared.ts (slash-command-executor import path changed)
-**change gitignore**
-**update project configuration and UI synchronization scripts**
-**enhance UI synchronization and improve usage tab functionality**
+
 **add usage styles to enhance UI consistency**
 
 ---
