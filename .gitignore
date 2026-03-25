@@ -9,4 +9,3 @@ docs/node_modules
 .cursor/
 pnpm-lock.yaml
 scripts/
-scripts2/
