@@ -4,6 +4,74 @@ clawui tracks the OpenClaw upstream UI. Each entry notes the upstream commit ran
 
 ---
 
+## 2026-03-25
+
+**Upstream synced:** `f404ff32d5 → cff6dc94e3` (OpenClaw `v2026.3.23`, unreleased HEAD)
+**clawui commit:** [`6de0d71`](https://github.com/imphillip/clawui/commit/6de0d71)
+
+### What changed
+
+**localStorage safety** — add getSafeLocalStorage() helper (local-storage.ts), replace all direct localStorage access across UI files
+
+**localStorage scoping** — settings key now scoped by basePath/gateway URL to prevent cross-deployment conflicts (storage.ts)
+
+**chat-model-ref** — new module centralizing provider-qualified model references (provider/model format), fixes model picker sending correct provider prefix
+
+**query token compat** — token now accepted from both ?token= query param and #token= hash param; pending token held until gateway URL change is confirmed
+
+**auto-scroll fix** — reset scroll state on send and detect stream start to force scroll to bottom during assistant response
+
+**Usage tab auto-load** — on navigation
+
+**overview locale** — persist locale dropdown selection across refresh
+
+**i18n** — "onboarding" → "setup" in UI strings
+
+**vendor** — add thinking.shared.ts (slash-command-executor import path changed)
+
+**change gitignore**
+
+**update project configuration and UI synchronization scripts**
+
+**enhance UI synchronization and improve usage tab functionality**
+
+**add usage styles to enhance UI consistency**
+
+**update .gitignore to include additional scripts and lock files**
+
+**enhance UI testing and local storage handling**
+
+**update changelog and .gitignore for recent changes**
+
+**update .gitignore to include new documentation scripts**
+
+**update GitHub Actions workflow to deploy docs on release branch**
+
+**update changelog for recent upstream sync**
+
+**update GitHub Actions workflow and changelog**
+
+**Merge branch 'release'**
+
+**update changelog and index for upstream version sync**
+
+**update changelog with recent enhancements and fixes**
+
+**update changelog to reflect current upstream version**
+
+**Merge branch 'release'**
+
+**update dependencies, styles, and scripts**
+
+**update package-lock.json with dependency changes**
+
+**update .gitignore, index.html, and package.json for improved organization and functionality**
+
+**refactor Vite configuration and clean up unused files**
+
+**update Vite output directory for build consistency**
+
+---
 ## 2026-03-23
 
 **Upstream synced:** `42837a04bf → f404ff32d5` (OpenClaw `v2026.3.23`, unreleased HEAD)
@@ -100,4 +168,4 @@ First working standalone build of the OpenClaw Control UI. Establishes the `reso
 
 | clawui | OpenClaw upstream | Sync date |
 |---|---|---|
-| current | `v2026.3.23` unreleased (`f404ff32d5`) | 2026-03-23 |
+| current | `v2026.3.23` unreleased (`cff6dc94e3`) | 2026-03-25 |
