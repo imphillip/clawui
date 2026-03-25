@@ -15,3 +15,4 @@ scripts/check-extra-ui-files.sh
 scripts/generate-ui-diff-summary.sh
 scripts/ui-upstream-diff-summary.md
 scripts/update-docs-upstream-tracking.sh
+scripts/diff-ui-root-from-openclaw.sh
