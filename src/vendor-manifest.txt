@@ -11,17 +11,24 @@
 # vendor the file from .external/ and add it to this manifest.
 
 # --- runtime dependencies (imported with `import` or re-exported) ---
+src/local-storage.ts
+src/types/create-markdown-preview.d.ts
 src/agents/tool-catalog.ts
 src/agents/tool-display-common.ts
 src/agents/tool-policy-shared.ts
+src/auto-reply/commands-args.ts
+src/auto-reply/commands-registry.shared.ts
+src/auto-reply/commands-registry.types.ts
 src/auto-reply/reply/strip-inbound-meta.ts
 src/auto-reply/thinking.shared.ts
 src/auto-reply/thinking.ts
 src/gateway/control-ui-contract.ts
 src/gateway/device-auth.ts
+src/gateway/device-metadata-normalization.ts
 src/gateway/events.ts
 src/gateway/protocol/client-info.ts
 src/gateway/protocol/connect-error-details.ts
+src/plugins/provider-thinking.ts
 src/infra/detect-package-manager.ts
 src/infra/format-time/format-duration.ts
 src/infra/format-time/format-relative.ts

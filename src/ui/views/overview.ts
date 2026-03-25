@@ -221,11 +221,10 @@ export function renderOverview(props: OverviewProps) {
               : html`
                 <label class="field">
                   <span>${t("overview.access.token")}</span>
-                  <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="ov-access-grid__inline">
                     <input
                       type=${props.showGatewayToken ? "text" : "password"}
                       autocomplete="off"
-                      style="flex: 1;"
                       .value=${props.settings.token}
                       @input=${(e: Event) => {
                         const v = (e.target as HTMLInputElement).value;
@@ -248,11 +247,10 @@ export function renderOverview(props: OverviewProps) {
                 </label>
                 <label class="field">
                   <span>${t("overview.access.password")}</span>
-                  <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="ov-access-grid__inline">
                     <input
                       type=${props.showGatewayPassword ? "text" : "password"}
                       autocomplete="off"
-                      style="flex: 1;"
                       .value=${props.password}
                       @input=${(e: Event) => {
                         const v = (e.target as HTMLInputElement).value;

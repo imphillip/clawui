@@ -4038,8 +4038,24 @@ td.data-table-key-col {
 /* Access grid */
 .ov-access-grid {
   display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+
+.ov-access-grid > .field {
+  min-width: 0;
+}
+
+.ov-access-grid__inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ov-access-grid__inline input {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .ov-access-grid__full {
@@ -4217,7 +4233,7 @@ details[open] > .ov-expandable-toggle::after {
   }
 
   .ov-access-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
   }
 
   .ov-recent__row {

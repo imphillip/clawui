@@ -8,11 +8,5 @@ docs/.vitepress/cache
 docs/node_modules
 .cursor/
 pnpm-lock.yaml
-scripts/ui-sync-ignore.txt
-scripts/compare-ui.sh
-scripts/sync-ui-from-openclaw.sh
-scripts/check-extra-ui-files.sh
-scripts/generate-ui-diff-summary.sh
-scripts/ui-upstream-diff-summary.md
-scripts/update-docs-upstream-tracking.sh
-scripts/diff-ui-root-from-openclaw.sh
+scripts/
+scripts2/
