@@ -59,7 +59,7 @@ export default defineConfig(() => {
       include: ["lit/directives/repeat.js"],
     },
     build: {
-      outDir: path.resolve(here, "../dist/control-ui"),
+      outDir: path.resolve(here, "dist"),
       emptyOutDir: true,
       sourcemap: true,
       // Keep CI/onboard logs clean; current control UI chunking is intentionally above 500 kB.
