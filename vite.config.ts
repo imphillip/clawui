@@ -29,7 +29,9 @@ export default defineConfig(() => {
       include: ["lit/directives/repeat.js"],
     },
     build: {
-      outDir: path.resolve(here, "../dist/control-ui"),
+      // Standalone repo + Cloudflare Pages: output must live inside the project (default publish dir "dist").
+      // Monorepo OpenClaw historically used ../dist/control-ui; override locally if needed.
+      outDir: path.resolve(here, "dist"),
       emptyOutDir: true,
       sourcemap: true,
       // Keep CI/onboard logs clean; current control UI chunking is intentionally above 500 kB.
