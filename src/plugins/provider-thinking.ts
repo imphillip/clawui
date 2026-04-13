@@ -1,28 +1,37 @@
-/**
- * Browser UI bundle: no OpenClaw plugin registry. Exported hooks always defer to
- * fallbacks in `auto-reply/thinking.shared.ts` / `thinking.ts`.
- */
+import type {
+  ProviderDefaultThinkingPolicyContext,
+  ProviderThinkingPolicyContext,
+} from "./provider-thinking.types.js";
+
 type ThinkingHookParams<TContext> = {
   provider: string;
   context: TContext;
 };
 
+/** Control UI build: no provider plugin registry in the browser. */
 export function resolveProviderBinaryThinking(
-  _params: ThinkingHookParams<{ provider: string; modelId: string }>,
+  _params: ThinkingHookParams<ProviderThinkingPolicyContext>,
 ): boolean | undefined {
   return undefined;
 }
 
 export function resolveProviderXHighThinking(
-  _params: ThinkingHookParams<{ provider: string; modelId: string }>,
+  _params: ThinkingHookParams<ProviderThinkingPolicyContext>,
 ): boolean | undefined {
   return undefined;
 }
 
-export function resolveProviderDefaultThinkingLevel(_params: ThinkingHookParams<{
-  provider: string;
-  modelId: string;
-  reasoning?: unknown;
-}>): undefined {
+export function resolveProviderDefaultThinkingLevel(
+  _params: ThinkingHookParams<ProviderDefaultThinkingPolicyContext>,
+):
+  | "off"
+  | "minimal"
+  | "low"
+  | "medium"
+  | "high"
+  | "xhigh"
+  | "adaptive"
+  | null
+  | undefined {
   return undefined;
 }

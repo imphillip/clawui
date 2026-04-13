@@ -1,39 +1,9 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { Plugin } from "vite";
 import { defineConfig } from "vite";
+import { resolveUpstreamSrc } from "./vite.resolve-upstream-src.ts";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-
-/** Map monorepo-style `../../../src` / `../../../../src` to this repo's `src/`. */
-function resolveUpstreamSrc(): Plugin {
-  const localSrc = path.join(here, "src");
-  const normParent = path.normalize(path.resolve(here, "..", "src"));
-  return {
-    name: "resolve-upstream-src",
-    enforce: "pre",
-    resolveId(source, importer) {
-      if (!importer) {
-        return undefined;
-      }
-      const resolved = path.normalize(path.resolve(path.dirname(importer), source));
-      const under =
-        resolved === normParent || resolved.startsWith(`${normParent}${path.sep}`);
-      if (!under) {
-        return undefined;
-      }
-      const rel = path.relative(normParent, resolved);
-      if (rel.startsWith("..")) {
-        return undefined;
-      }
-      let target = path.join(localSrc, rel);
-      if (target.endsWith(".js")) {
-        target = `${target.slice(0, -3)}.ts`;
-      }
-      return target;
-    },
-  };
-}
 
 function normalizeBase(input: string): string {
   const trimmed = input.trim();
@@ -59,7 +29,7 @@ export default defineConfig(() => {
       include: ["lit/directives/repeat.js"],
     },
     build: {
-      outDir: path.resolve(here, "dist"),
+      outDir: path.resolve(here, "../dist/control-ui"),
       emptyOutDir: true,
       sourcemap: true,
       // Keep CI/onboard logs clean; current control UI chunking is intentionally above 500 kB.
@@ -82,7 +52,6 @@ export default defineConfig(() => {
                 basePath: "/",
                 assistantName: "",
                 assistantAvatar: "",
-                assistantAgentId: "",
               }),
             );
           });
